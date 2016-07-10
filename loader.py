@@ -56,10 +56,11 @@ def load_data_word(filename="data/reddit-comments-2015-08.csv", vocabulary_size=
 
 def load_data_char():
     # data I/O
-    #x_train = 'Hello, how are you? I am fine, and you? Good, thanks,'
-    x_train = open('data/shakespeare.txt', 'r').read() # should be simple plain text file
+    # x_train = 'Hello, how are you? I am fine, and you? Good, thanks,'
+    x_train = open('data/plaintext.txt', 'r').read() # should be simple plain text file
     y_train = x_train[1:]
     x_train = x_train[:-1]
+    #print x_train
     chars = list(set(x_train))
     data_size, vocab_size = len(x_train), len(chars)
     print 'data has %d characters, %d unique.' % (data_size, vocab_size)
