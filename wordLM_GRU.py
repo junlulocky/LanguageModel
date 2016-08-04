@@ -5,7 +5,7 @@ from theano.gradient import grad_clip
 import time
 import operator
 
-class GRUTheano:
+class WordGRU:
     
     def __init__(self, word_dim, hidden_dim=128, bptt_truncate=-1):
         # Assign instance variables

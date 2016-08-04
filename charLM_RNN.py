@@ -3,7 +3,7 @@ import os
 import time
 from datetime import datetime
 from utils import *
-from rnn_theano import RNNTheano
+from wordLM_RNN import RNNTheano
 import theano as theano
 import theano.tensor as T
 from utils import *

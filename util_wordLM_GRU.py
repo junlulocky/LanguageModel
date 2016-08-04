@@ -10,16 +10,11 @@ import operator
 import io
 import array
 from datetime import datetime
-from gru_theano import GRUTheano
+from wordLM_GRU import GRUTheano
 
 SENTENCE_START_TOKEN = "SENTENCE_START"
 SENTENCE_END_TOKEN = "SENTENCE_END"
 UNKNOWN_TOKEN = "UNKNOWN_TOKEN"
-
-
-
-
-
 
 def save_model_parameters_theano(model, outfile):
     np.savez(outfile,

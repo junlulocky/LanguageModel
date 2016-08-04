@@ -4,7 +4,7 @@ import theano.tensor as T
 from utils import *
 import operator
 
-class RNNTheano:
+class WordRNN:
     
     def __init__(self, word_dim, hidden_dim=100, bptt_truncate=4):
         # Assign instance variables
@@ -62,6 +62,7 @@ class RNNTheano:
                               (self.W, self.W - learning_rate * dW)])
     
     def calculate_total_loss(self, X, Y):
+        print "calculating loss..."
         return np.sum([self.ce_error(x,y) for x,y in zip(X,Y)])
     
     def calculate_loss(self, X, Y):

@@ -10,6 +10,13 @@ UNKNOWN_TOKEN = "UNKNOWN_TOKEN"
 
 
 def load_data_word(filename="data/reddit-comments-2015-08.csv", vocabulary_size=2000, min_sent_characters=0):
+    """
+    load data set for word-level language model
+    :param filename: data set file name
+    :param vocabulary_size:
+    :param min_sent_characters:
+    :return:
+    """
 
     word_to_index = []
     index_to_word = []
@@ -20,6 +27,7 @@ def load_data_word(filename="data/reddit-comments-2015-08.csv", vocabulary_size=
         reader = csv.reader(f, skipinitialspace=True)
         reader.next()
         # Split full comments into sentences
+        #nltk.download('all')
         sentences = itertools.chain(*[nltk.sent_tokenize(x[0].decode("utf-8").lower()) for x in reader])
         # Filter sentences
         sentences = [s for s in sentences if len(s) >= min_sent_characters]
@@ -55,6 +63,10 @@ def load_data_word(filename="data/reddit-comments-2015-08.csv", vocabulary_size=
     return X_train, y_train, word_to_index, index_to_word
 
 def load_data_char():
+    """
+    load data set for character-level language model
+    :return:
+    """
     # data I/O
     # x_train = 'Hello, how are you? I am fine, and you? Good, thanks,'
     x_train = open('data/plaintext.txt', 'r').read() # should be simple plain text file

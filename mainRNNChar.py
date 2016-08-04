@@ -1,7 +1,7 @@
 import time
 from utils import *
 
-from rnnLayer import RNNChar
+from charLM_RNN import RNNChar
 from loader import load_data_char
 
 
@@ -45,22 +45,18 @@ def train_with_sgd(model, x_train, y_train, learning_rate=0.0001, nepoch=1, eval
         iter += 1 # iteration counter
 
 
-def main_rnn_word():
-    # load data
-    x_train, y_train, char_to_ix, ix_to_char, vocab_size = load_data_char()
 
-    p=0
-    inputs = [ix for ix in x_train[p:p+hyper['seq_length']]]
-    targets = [ix for ix in y_train[p:p+hyper['seq_length']]]
+# load data
+x_train, y_train, char_to_ix, ix_to_char, vocab_size = load_data_char()
 
-    model = RNNChar(char_dim=vocab_size, hidden_dim=hyper['hidden_size'])
-    t1 = time.time()
-    # initial step
-    model.sgd_step(inputs, targets, hyper['learning_rate'])
-    t2 = time.time()
-    print "SGD Step time: %f milliseconds" % ((t2 - t1) * 1000.)
-    train_with_sgd(model, x_train, y_train, nepoch=None, learning_rate=hyper['learning_rate'], ix_to_char=ix_to_char)
+p=0
+inputs = [ix for ix in x_train[p:p+hyper['seq_length']]]
+targets = [ix for ix in y_train[p:p+hyper['seq_length']]]
 
-
-if __name__ == '__main__':
-    main_rnn_word()
+model = RNNChar(char_dim=vocab_size, hidden_dim=hyper['hidden_size'])
+t1 = time.time()
+# initial step
+model.sgd_step(inputs, targets, hyper['learning_rate'])
+t2 = time.time()
+print "SGD Step time: %f milliseconds" % ((t2 - t1) * 1000.)
+train_with_sgd(model, x_train, y_train, nepoch=None, learning_rate=hyper['learning_rate'], ix_to_char=ix_to_char)
